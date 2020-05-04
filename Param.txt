@@ -1,0 +1,263 @@
+
+Cut Depths
+--------------------
+Depth Of Cut Parameters cue=Set Depth Of Cut Parameters
+==========
+Type
+  [] - по середке
+[
+User Defined (все активны)
+Floor Only   (все погашено)
+Floor & Island Tops   (все погашено)
+Levels at Island Tops   (активны-Initial,Final,Increment )
+Fixed Depth  (активны-Maximum,Increment,Top Off Islands )
+]
+
+Maximum   - real=3.
+Minimum   - real=0.
+Initial   - real=0.
+Final     - real=3.
+Increment Side Stock   - real=3.
+Top Off Islands   check=off
+
+
+==============================================================
+
+typedef enum
+{
+    UF_PARAM_clv_range_auto_generate  = 0,  /* cut levels defined by system */
+
+    UF_PARAM_clv_range_user_defined   = 1,  /* cut levels are defined by user */
+
+    UF_PARAM_clv_range_single         = 2   /* Single cut range */
+
+} UF_PARAM_clv_range_type_t;
+
+
+/* UF_PARAM_CUTLEV_RANGE_TYPE
+ *
+ *   Description:
+ *      Specifies the type of cut level ranges.
+ *
+ *   Type: UF_PARAM_type_int
+ *
+ *   Name: Cut Level Range Type
+ *  Variable Name: <prefix>_cut_level_range_type
+ *
+ *   NOTE: Read-Only Parameter
+ *
+ *   Possible Values: UF_PARAM_clv_range_type_t
+ *
+ * 
+*/
+#define UF_PARAM_CUTLEV_RANGE_TYPE   5400 
+
+
+typedef enum
+{
+    UF_PARAM_clv_range_subdiv_equalise = 0,  /* subdivide cut range into equal steps */
+    
+    UF_PARAM_clv_range_subdiv_bottoms_only   = 1   /* cut at range bottoms only */
+
+} UF_PARAM_clv_range_subdiv_type_t; 
+
+
+/* UF_PARAM_CUTLEV_RANGE_SUBDIV_TYPE
+ *
+ *   Description:
+ *      Specifies how a cut level range is to be subdivided. Whether
+ *      only the range bottoms are to be cut, or if the global depth
+ *      per cut value is to be used to subdivide the cut level range
+ *      into equal steps.
+ *
+ *   Type: UF_PARAM_type_int
+ *
+ *   Name: Cut Range Bottoms Only
+ *  Variable Name: <prefix>_cut_range_bottoms_only
+ *
+ *   Possible Values: UF_PARAM_clv_range_subdiv_type_t
+ *
+ * 
+ */
+#define UF_PARAM_CUTLEV_RANGE_SUBDIV_TYPE   5401 
+
+
+typedef enum
+{
+    UF_PARAM_clv_top_off_mode_off = 0,   /* Don't top off horizontal surfaces. */
+
+    UF_PARAM_clv_top_off_mode_on  = 1    /* Do top off horizontal surfaces.  */
+
+} UF_PARAM_clv_top_off_mode_t;
+
+
+/* UF_PARAM_CUTLEV_TOP_OFF_MODE
+ *
+ *   Description:
+ *      Specifies if the horizontal surfaces should be topped off.
+ *      This is only available for 'single' range type.
+ *
+ *   Type: UF_PARAM_type_int
+ *
+ *   Name: Cut Level Top Off Mode
+ *  Variable Name: <prefix>_cut_level_top_off_mode
+ *
+ *   Possible Values: UF_PARAM_clv_top_off_mode_t
+ *
+ * 
+*/
+#define UF_PARAM_CUTLEV_TOP_OFF_MODE   5402 
+
+
+
+
+
+
+typedef enum
+{
+    UF_PARAM_cutlev_method_user_defined          = 0,
+    UF_PARAM_cutlev_method_floor_only            = 1,
+    UF_PARAM_cutlev_method_floor_and_island_tops = 2,
+    UF_PARAM_cutlev_method_levels_at_island_tops = 3,
+    UF_PARAM_cutlev_method_fixed_depth           = 4
+
+} UF_PARAM_cutlev_method_t;
+
+
+/* UF_PARAM_CUTLEV_METHOD
+ *
+ *   Description:
+ *      Parameter determines the depth-of_cut type.
+ *
+ *   Type: UF_PARAM_type_int
+ *
+ *   Name: Cut Level Method
+ *  Variable Name: <prefix>_cut_level_method
+ *
+ *   Possible Values: UF_PARAM_cutlev_method_t
+ *
+ * 
+ */
+#define UF_PARAM_CUTLEV_METHOD   236  /* UF_PARAM_type_int */
+
+
+
+
+
+
+
+
+
+/* UF_PARAM_CUTLEV_FIRST_DEPTH
+ *
+ *   Description:
+ *      This parameter specifies the first depth of cut used in the cut level.
+ *
+ *   Type: UF_PARAM_type_double_length
+ *
+ *   Name: Cut Level First Depth
+ *  Variable Name: <prefix>_cut_level_first_depth
+ *
+ *   Possible Values: zero or positive double
+ *
+ * 
+ */
+#define UF_PARAM_CUTLEV_FIRST_DEPTH   310  /* UF_PARAM_type_double_length */
+
+
+/* UF_PARAM_CUTLEV_LAST_DEPTH
+ *
+ *   Description:
+ *      This parameter specifies the last depth of cut used in the cut level.
+ *
+ *   Type: UF_PARAM_type_double_length
+ *
+ *   Name: Cut Level Last Depth
+ *  Variable Name: <prefix>_cut_level_last_depth
+ *
+ *   Possible Values: zero or positive double
+ *
+ * 
+ */
+#define UF_PARAM_CUTLEV_LAST_DEPTH   311  /* UF_PARAM_type_double_length */
+
+
+/* UF_PARAM_CUTLEV_MAX_DEPTH
+ *
+ *   Description:
+ *      This parameter specifies the maximum depth of cut used in the cut level.
+ *
+ *   Type: UF_PARAM_type_double_length
+ *
+ *   Name: Cut Level Max Depth
+ *  Variable Name: <prefix>_cut_level_max_depth
+ *
+ *   Possible Values: zero or positive double
+ *
+ * 
+ */
+#define UF_PARAM_CUTLEV_MAX_DEPTH   312  /* UF_PARAM_type_double_length */
+
+
+/* UF_PARAM_CUTLEV_MIN_DEPTH
+ *
+ *   Description:
+ *      This parameter specifies the minimum depth of cut used in the cut level.
+ *
+ *   Type: UF_PARAM_type_double_length
+ *
+ *   Name: Cut Level Min Depth
+ *  Variable Name: <prefix>_cut_level_min_depth
+ *
+ *   Possible Values: zero or positive double
+ *
+ * 
+ */
+#define UF_PARAM_CUTLEV_MIN_DEPTH   313  /* UF_PARAM_type_double_length */
+
+
+/* UF_PARAM_CUTLEV_SIDE_STOCK_INCR
+ *
+ *   Description:
+ *      This parameter specifies the side stock increment for each cut level.
+ *      (Parameter is used in planar milling only.)
+ *
+ *   Type: UF_PARAM_type_double_length
+ *
+ *   Name: Cut Level Side Stock Increment
+ *  Variable Name: <prefix>_cut_level_side_stock_increment
+ *
+ *   Possible Values: double
+ *
+ * 
+ */
+#define UF_PARAM_CUTLEV_SIDE_STOCK_INCR   314  /* UF_PARAM_type_double_length */
+
+
+typedef enum
+{
+    UF_PARAM_cutlev_topoff_status_inactive = 0,
+    UF_PARAM_cutlev_topoff_status_active   = 1
+
+} UF_PARAM_cutlev_topoff_status_t;
+
+
+/* UF_PARAM_CUTLEV_TOPOFF_STATUS
+ *
+ *   Description:
+ *      This parameter specifies the status to top off the islands.
+ *
+ *   Type: UF_PARAM_type_int
+ *
+ *   Name: Cut Level Topoff Status
+ *  Variable Name: <prefix>_cut_level_topoff_status
+ *
+ *   Possible Values: UF_PARAM_cutlev_topoff_status_t
+ *
+ *
+ *
+ * 
+ */
+#define UF_PARAM_CUTLEV_TOPOFF_STATUS   315  /* UF_PARAM_type_int */
+
+
